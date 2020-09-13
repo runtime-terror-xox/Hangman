@@ -50,6 +50,21 @@ def game_window():
             random_word = word_list[l_idx]
             return random_word.lower()
 
+    """
+    function to start the game and count number Of try to Guess
+    """
+    def if_user_want_to_play():
+        global the_word_withSpaces
+        global numberOfGuesses
+        global word_for_guess
+        numberOfGuesses = 0
+        # want_play = input('you want to play')
+        # want_play = 'y'
+        if True:
+            word_for_guess=random_word()
+            the_word_withSpaces = " ".join(word_for_guess)
+            print(the_word_withSpaces)
+
 
 """
 Category window
