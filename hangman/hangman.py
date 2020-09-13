@@ -155,6 +155,20 @@ def game_window():
                                                                                            column=n % 11)
         n += 1
 
+    """
+    button for call get_help function and give hint to the user 
+    """
+    Button(window, text='hint', command=lambda: get_help(word_for_guess), font=('Helvetica 18'), width=5,
+           height=3, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5,
+                                                                                                               column=10,
+                                                                                                               sticky='NSWE')
+    if_user_want_to_play()
+
+
+
+
+
+
 """
 Category window
 """
