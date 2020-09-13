@@ -11,10 +11,14 @@ alphabet1=[ 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p','a']
 alphabet2=[ 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l','z']
 alphabet3=[ 'x', 'c', 'v', 'b', 'n', 'm']
 
+
+"""
+function to run the game on new window
+"""
 def game_window():
     category_window.destroy()
     global category
-    
+
     """
     Game window
     """
@@ -23,6 +27,28 @@ def game_window():
     window.configure(bg="#fff")
     window.title('Hangman_Game')
 
+    photos = [PhotoImage(file='hm01.png'), PhotoImage(file='hm02.png'), PhotoImage(file='hm03.png'),PhotoImage(file='hm06.png'),PhotoImage(file='hm07.png'), PhotoImage(file='hm08.png')]
+
+
+    """
+    function to get random name by the category that user choice
+    """
+    def random_word():
+        global category
+        min, max = 0, 9
+        l_idx = random.randint(min, max)
+        if category == 'country':
+            word_list = faker_country_data()
+            random_word = word_list[l_idx]
+            return random_word.lower()
+        elif category == 'name':
+            word_list = faker_farst_name_data()
+            random_word = word_list[l_idx]
+            return random_word.lower()
+        elif category == 'color':
+            word_list = faker_country_data()
+            random_word = word_list[l_idx]
+            return random_word.lower()
 
 
 """
