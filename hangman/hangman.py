@@ -80,6 +80,30 @@ def game_window():
 
     # print(get_help('black'))
 
+    """
+    function to check the letter from the user and count the times of try to guess and do some action based on his input
+    """
+    def if_guess(letter):
+        global numberOfGuesses
+        if numberOfGuesses < 6:
+            text = list(the_word_withSpaces)
+            guessed = list(label_word.get())
+            if the_word_withSpaces.count(letter) > 0:
+                for i in range(len(text)):
+                    if text[i] == letter:
+                        guessed[i] = letter
+                    label_word.set(''.join(guessed))
+                    if label_word.get() == the_word_withSpaces:
+                        messagebox.showinfo('Hangman', 'Great you guessed it')
+                        if_user_want_to_play()
+            else:
+                numberOfGuesses += 1
+                img_label.config(image=photos[numberOfGuesses])
+                img_label.config(bg="#fff")
+                if numberOfGuesses == 5:
+                    messagebox.showwarning('Hangman', 'Game Over')
+                    exit()
+
 
 """
 Category window
