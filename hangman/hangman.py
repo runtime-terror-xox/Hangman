@@ -11,6 +11,19 @@ alphabet1=[ 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p','a']
 alphabet2=[ 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l','z']
 alphabet3=[ 'x', 'c', 'v', 'b', 'n', 'm']
 
+def game_window():
+    category_window.destroy()
+    global category
+    
+    """
+    Game window
+    """
+    window = Tk()
+    window.geometry('1023x750+450+100')
+    window.configure(bg="#fff")
+    window.title('Hangman_Game')
+
+
 
 """
 Category window
