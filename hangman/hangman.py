@@ -35,5 +35,13 @@ box_value=StringVar()
 coltbox = ttk.Combobox(category_window,textvariable=box_value)
 coltbox["values"] = ["color", "name","country"]
 coltbox.pack()
-bbbb=Button(category_window,text="start\ngame", command=what_is_category, width=20)
-bbbb.pack()
+start_game=Button(category_window,text="start\ngame", command=what_is_category, width=20)
+start_game.pack()
+
+
+"""
+function to show the windows it is for tkinter package
+"""
+def run_tkinter():
+    category_window.mainloop()
+run_tkinter()
