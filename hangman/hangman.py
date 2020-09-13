@@ -29,6 +29,7 @@ def game_window():
 
     photos = [PhotoImage(file='hm01.png'), PhotoImage(file='hm02.png'), PhotoImage(file='hm03.png'),PhotoImage(file='hm06.png'),PhotoImage(file='hm07.png'), PhotoImage(file='hm08.png')]
 
+    label_word = StringVar()
 
     """
     function to get random name by the category that user choice
@@ -104,6 +105,55 @@ def game_window():
                     messagebox.showwarning('Hangman', 'Game Over')
                     exit()
 
+
+    img_label = Label(window)
+    img_label.grid(row=1, column=3, columnspan=3, padx=10, pady=40)
+    img_label.config(image=photos[0])
+    img_label.config(bg="#fff")
+
+    Label(window, textvariable=label_word, font=('Consolas 24 bold'), bg="#fff").grid(row=1, column=7, columnspan=6,
+                                                                                   padx=10)
+
+    n = 2
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=3 + n // 13,
+                                                                                             column=n % 13)
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=3 + n // 13,
+                                                                                             column=n % 13)
+    for i in alphabet1:
+        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",
+               fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=3 + n // 13,
+                                                                                           column=n % 13)
+        n += 1
+
+    n = 3
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=4 + n // 12,
+                                                                                             column=n % 12)
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=4 + n // 12,
+                                                                                             column=n % 12)
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=4 + n // 12,
+                                                                                             column=n % 12)
+    Label(window, text=' ', font=('Helvetica 18'), width=5, height=3, bg="#fff", fg="white", bd=1).grid(row=2 + n // 10,
+                                                                                                        column=n % 10)
+    for i in alphabet2:
+        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",
+               fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=4 + n // 12,
+                                                                                           column=n % 12)
+        n += 1
+
+    n = 4
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,
+                                                                                             column=n % 10)
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,
+                                                                                             column=n % 10)
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,
+                                                                                             column=n % 10)
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,
+                                                                                             column=n % 10)
+    for i in alphabet3:
+        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",
+               fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5 + n // 11,
+                                                                                           column=n % 11)
+        n += 1
 
 """
 Category window
