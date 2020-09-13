@@ -64,6 +64,21 @@ def game_window():
             word_for_guess=random_word()
             the_word_withSpaces = " ".join(word_for_guess)
             print(the_word_withSpaces)
+            label_word.set(" ".join("_" * len(word_for_guess)))
+
+
+
+    """
+    function to get the user hint or defintion about the word that must be guessed
+    """
+    def get_help(val):
+        try:
+            dictionary = PyDictionary(f'{val}').getMeanings()[f'{val}']['Noun'][0]
+            messagebox.showwarning('Hint', dictionary)
+        except:
+            messagebox.showwarning('Hint', 'this one is so easy we will not help you')
+
+    # print(get_help('black'))
 
 
 """
