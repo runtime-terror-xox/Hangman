@@ -1,168 +1,204 @@
-# from tkinter import *
-# from tkinter import messagebox
-# from PIL import ImageTk, Image
-
-# window = Tk()
-# window.title("Ready to Hang!! If you didn't find the word less than 4 chances")
-# window.geometry("800x700")
-# chances=4;
-# image_paths=['hang.jpg','img4.png','img3.png','img2.png','img1.jpg']
-# img = Image.open(image_paths[chances])
-# img = img.resize((200, 200), Image.ANTIALIAS)
-# img= ImageTk.PhotoImage(img)
-# panel = Label(window, image = img)
-# panel.grid(column=0, row=0)
-# answer_arr=[]
-# def clicked(alphabet):
-#     global chances
-#     answer= "INVERT";
-#     if alphabet in answer: #Its checks whether the albpbet is there in the answer
-#         if alphabet=="I":
-#             btn01["text"] = alphabet;
-#         elif alphabet=="N":
-#             btn02["text"] = alphabet;
-#         elif alphabet=="V":
-#             btn03["text"] = alphabet;
-#         elif alphabet=="E":
-#             btn04["text"] = alphabet;
-#         elif alphabet=="R":
-#             btn05["text"] = alphabet;
-#         elif alphabet=="T":
-#             btn06["text"] = alphabet;
-#     else:
-#         txt="Chances remaining "+str(chances);
-#         label1.configure(text=txt)
-#         image = Image.open(image_paths[chances])
-#         image = image.resize((200, 200), Image.ANTIALIAS)
-#         imgnew = ImageTk.PhotoImage(image)
-#         panel.configure(image=imgnew)
-#         panel.image = imgnew
-#         chances = chances - 1;
-#         if chances<0:
-#             messagebox.showinfo("Loose to guess","Hanged!!!!!")
-#             window.destroy()
-#     if btn01["text"]=="I" and btn02["text"]=="N" and btn03["text"]=="V" and btn04["text"]=="E" and btn05["text"]=="R" and btn06["text"]=="T":
-#         messagebox.showinfo("congratulations", "Win the Game Great Buddy!!!!")
-#         window.destroy()
-#     print(chances)
-
-
-
-# btn01 = Button(window, text=" ",bg="white", fg="Black",width=3,height=1,font=('Helvetica','20'))
-# btn01.grid(column=2, row=0)
-# btn02 = Button(window, text=" ",bg="white", fg="Black",width=3,height=1,font=('Helvetica','20'))
-# btn02.grid(column=3, row=0)
-# btn03 = Button(window, text=" ",bg="white", fg="Black",width=3,height=1,font=('Helvetica','20'))
-# btn03.grid(column=4, row=0)
-# btn04 = Button(window, text=" ",bg="white", fg="Black",width=3,height=1,font=('Helvetica','20'))
-# btn04.grid(column=5, row=0)
-# btn05 = Button(window, text=" ",bg="white", fg="Black",width=3,height=1,font=('Helvetica','20'))
-# btn05.grid(column=6, row=0)
-# btn06 = Button(window, text=" ",bg="white", fg="Black",width=3,height=1,font=('Helvetica','20'))
-# btn06.grid(column=7, row=0)
-
-
-# btn1 = Button(window, text="A",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("A"))
-# btn1.grid(column=1, row=1)
-# btn2 = Button(window, text="R",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("R"))
-# btn2.grid(column=2, row=1)
-# btn3 = Button(window, text="B",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("B"))
-# btn3.grid(column=3, row=1)
-# btn4 = Button(window, text="Z",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("Z"))
-# btn4.grid(column=4, row=1)
-# btn5 = Button(window, text="T",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("T"))
-# btn5.grid(column=5, row=1)
-# btn6 = Button(window, text="I",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("I"))
-# btn6.grid(column=6, row=1)
-# btn7 = Button(window, text="C",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("C"))
-# btn7.grid(column=7, row=1)
-# btn8 = Button(window, text="X",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("X"))
-# btn8.grid(column=8, row=1)
-
-# btn9 = Button(window, text="O",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("O"))
-# btn9.grid(column=2, row=2)
-# btn10 = Button(window, text="Y",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("Y"))
-# btn10.grid(column=3, row=2)
-# btn11= Button(window, text="P",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("P"))
-# btn11.grid(column=4, row=2)
-# btn12 = Button(window, text="N",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("N"))
-# btn12.grid(column=5, row=2)
-# btn13 = Button(window, text="D",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("D"))
-# btn13.grid(column=6, row=2)
-# btn14 = Button(window, text="W",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("W"))
-# btn14.grid(column=7, row=2)
-
-# btn15= Button(window, text="V",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("V"))
-# btn15.grid(column=3, row=3)
-# btn16 = Button(window, text="S",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("S"))
-# btn16.grid(column=4, row=3)
-# btn17 = Button(window, text="L",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("L"))
-# btn17.grid(column=5, row=3)
-# btn18 = Button(window, text="U",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("U"))
-# btn18.grid(column=6, row=3)
-
-# btn19 = Button(window, text="M",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("M"))
-# btn19.grid(column=4, row=4)
-# btn20 = Button(window, text="E",bg="skyBlue", fg="Black",width=3,height=1,font=('Helvetica','20'),command=lambda: clicked("E"))
-# btn20.grid(column=5, row=4)
-
-# label1=Label(window,text="Total Chances are : 5")
-# label1.grid(row=5,column=0)
-# window.mainloop()
-
 from tkinter import *
 from tkinter import messagebox
-from string import ascii_lowercase
-from faker import Faker
+from tkinter import ttk
+from PyDictionary import PyDictionary
+# import time
 import random
+from data_from_faker import *
 
-window = Tk()
-window.title('Hangman')
-fake = Faker('en_US')
-colors_to_guess = [fake.color_name()]
-photos = [PhotoImage(file='images/hang0.png'), PhotoImage(file='images/hang1.png'), PhotoImage(file='images/hang2.png'), PhotoImage(file='images/hang3.png'),
-          PhotoImage(file='images/hang4.png'), PhotoImage(file='images/hang5.png'), PhotoImage(file='images/hang6.png'),PhotoImage(file='images/hang7.png'),
-          PhotoImage(file='images/hang8.png'), PhotoImage(file='images/hang9.png'), PhotoImage(file='images/hang10.png'), PhotoImage(file='images/hang11.png')]
 
-def new_game():
-    global the_word_withSpaces
-    global numberOfGuesses
-    numberOfGuesses = 0
+alphabet1=[ 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p','a']
+alphabet2=[ 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l','z']
+alphabet3=[ 'x', 'c', 'v', 'b', 'n', 'm']
+
+
+"""
+function to run the game on new window
+"""
+def game_window():
+    category_window.destroy()
+    global category
+
+    """
+    Game window
+    """
+    window = Tk()
+    window.geometry('1023x750+450+100')
+    window.configure(bg="#fff")
+    window.title('Hangman_Game')
+
+    photos = [PhotoImage(file='hm01.png'), PhotoImage(file='hm02.png'), PhotoImage(file='hm03.png'),PhotoImage(file='hm06.png'),PhotoImage(file='hm07.png'), PhotoImage(file='hm08.png')]
+
+    label_word = StringVar()
+
+    """
+    function to get random name by the category that user choice
+    """
+    def random_word():
+        global category
+        min, max = 0, 9
+        l_idx = random.randint(min, max)
+        if category == 'country':
+            word_list = faker_country_data()
+            random_word = word_list[l_idx]
+            return random_word.lower()
+        elif category == 'name':
+            word_list = faker_farst_name_data()
+            random_word = word_list[l_idx]
+            return random_word.lower()
+        elif category == 'color':
+            word_list = faker_country_data()
+            random_word = word_list[l_idx]
+            return random_word.lower()
+
+    """
+    function to start the game and count number Of try to Guess
+    """
+    def if_user_want_to_play():
+        global the_word_withSpaces
+        global numberOfGuesses
+        global word_for_guess
+        numberOfGuesses = 0
+        # want_play = input('you want to play')
+        # want_play = 'y'
+        if True:
+            word_for_guess=random_word()
+            the_word_withSpaces = " ".join(word_for_guess)
+            print(the_word_withSpaces)
+            label_word.set(" ".join("_" * len(word_for_guess)))
+
+
+
+    """
+    function to get the user hint or defintion about the word that must be guessed
+    """
+    def get_help(val):
+        try:
+            dictionary = PyDictionary(f'{val}').getMeanings()[f'{val}']['Noun'][0]
+            messagebox.showwarning('Hint', dictionary)
+        except:
+            messagebox.showwarning('Hint', 'this one is so easy we will not help you')
+
+    # print(get_help('black'))
+
+    """
+    function to check the letter from the user and count the times of try to guess and do some action based on his input
+    """
+    def if_guess(letter):
+        global numberOfGuesses
+        if numberOfGuesses < 6:
+            text = list(the_word_withSpaces)
+            guessed = list(label_word.get())
+            if the_word_withSpaces.count(letter) > 0:
+                for i in range(len(text)):
+                    if text[i] == letter:
+                        guessed[i] = letter
+                    label_word.set(''.join(guessed))
+                    if label_word.get() == the_word_withSpaces:
+                        messagebox.showinfo('Hangman', 'Great you guessed it')
+                        if_user_want_to_play()
+            else:
+                numberOfGuesses += 1
+                img_label.config(image=photos[numberOfGuesses])
+                img_label.config(bg="#fff")
+                if numberOfGuesses == 5:
+                    messagebox.showwarning('Hangman', 'Game Over')
+                    exit()
+
+
+    img_label = Label(window)
+    img_label.grid(row=1, column=3, columnspan=3, padx=10, pady=40)
     img_label.config(image=photos[0])
-    the_word = random.choice(colors_to_guess).lower()
-    the_word_withSpaces = ' '.join(the_word)
-    lblWord.set(' '.join('_' * len(the_word)))
+    img_label.config(bg="#fff")
 
-def guess(letter):
-    global numberOfGuesses
-    if numberOfGuesses < 11:
-        text = list(the_word_withSpaces)
-        guessed = list(lblWord.get())
-        if the_word_withSpaces.count(letter) > 0:
-            for i in range(len(text)):
-                if text[i] == letter:
-                    guessed[i] = letter
-                lblWord.set(''.join(guessed))
-                if lblWord.get() == the_word_withSpaces:
-                    messagebox.showinfo('Hangman', 'Great you guessed it')
-                    new_game()
-        else:
-            numberOfGuesses +=1
-            img_label.config(image=photos[numberOfGuesses])
-            if numberOfGuesses == 11:
-                messagebox.showwarning('Hangman', 'Game Over')
+    Label(window, textvariable=label_word, font=('Consolas 24 bold'), bg="#fff").grid(row=1, column=7, columnspan=6,
+                                                                                   padx=10)
 
-img_label = Label(window)
-img_label.grid(row=0, column=0, columnspan=3, padx=10, pady=40)
-img_label.config(image=photos[0])
-lblWord = StringVar()
-Label(window, textvariable=lblWord, font=('Consolas 24 bold')).grid(row=0, column=3, columnspan=6, padx=10)
+    n = 2
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=3 + n // 13,
+                                                                                             column=n % 13)
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=3 + n // 13,
+                                                                                             column=n % 13)
+    for i in alphabet1:
+        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",
+               fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=3 + n // 13,
+                                                                                           column=n % 13)
+        n += 1
 
-n = 0
-for i in ascii_lowercase:
-    Button(window, text=i, command=lambda i=i: guess(i), font=('Helvetica 18'), width=4).grid(row=1+n//9, column=n%9)
-    n += 1
-Button(window, text='New\nGame', command=lambda: new_game(), font=('Helvetica 10 bold')).grid(row=3, column=8, sticky='NSWE')
+    n = 3
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=4 + n // 12,
+                                                                                             column=n % 12)
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=4 + n // 12,
+                                                                                             column=n % 12)
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=4 + n // 12,
+                                                                                             column=n % 12)
+    Label(window, text=' ', font=('Helvetica 18'), width=5, height=3, bg="#fff", fg="white", bd=1).grid(row=2 + n // 10,
+                                                                                                        column=n % 10)
+    for i in alphabet2:
+        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",
+               fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=4 + n // 12,
+                                                                                           column=n % 12)
+        n += 1
 
-new_game()
-window.mainloop()
+    n = 4
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,
+                                                                                             column=n % 10)
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,
+                                                                                             column=n % 10)
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,
+                                                                                             column=n % 10)
+    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,
+                                                                                             column=n % 10)
+    for i in alphabet3:
+        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",
+               fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5 + n // 11,
+                                                                                           column=n % 11)
+        n += 1
+
+    """
+    button for call get_help function and give hint to the user 
+    """
+    Button(window, text='hint', command=lambda: get_help(word_for_guess), font=('Helvetica 18'), width=5,
+           height=3, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5,
+                                                                                                               column=10,
+                                                                                                               sticky='NSWE')
+    if_user_want_to_play()
+
+
+
+
+
+
+"""
+Category window
+"""
+category_window = Tk()
+category_window.geometry('400x200+761+250')
+category_window.configure(bg="#fff")
+category_window.title('Hangman')
+
+"""
+function to check what is the category and call a new function to open new window (game window) and destroy category window
+"""
+def what_is_category():
+     print(box_value.get())
+     if box_value.get():
+        global category
+        category=box_value.get()
+        game_window()
+
+
+box_value=StringVar()
+coltbox = ttk.Combobox(category_window,textvariable=box_value)
+coltbox["values"] = ["color", "name","country"]
+coltbox.pack()
+start_game=Button(category_window,text="start\ngame", command=what_is_category, width=20)
+start_game.pack()
+
+
+"""
+function to show the windows it is for tkinter package
+"""
+def run_tkinter():
+    category_window.mainloop()
+run_tkinter()
