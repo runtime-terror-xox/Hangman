@@ -7,6 +7,7 @@ import random
 import speech_recognition as sr
 from data_from_faker import *
 import audiomath; audiomath.RequireAudiomathVersion( '1.12.0' )
+
 class DuckTypedMicrophone( sr.AudioSource ): # descent from AudioSource is required purely to pass an assertion in Recognizer.listen()
     def __init__( self, device=None, chunkSeconds=1024/44100.0 ):  # 1024 samples at 44100 Hz is about 23 ms
         self.recorder = None
@@ -37,6 +38,8 @@ class DuckTypedMicrophone( sr.AudioSource ): # descent from AudioSource is requi
     @property
     def stream( self ): # attribute must be present to pass an assertion in Recognizer.listen(), and its value must have a .read() method
         return self if self.recorder else None
+
+        
 import speech_recognition  # NB: python -m pip install SpeechRecognition
 alphabet1=[ 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p','a']
 alphabet2=[ 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l','z']
@@ -206,18 +209,5 @@ function to show the windows it is for tkinter package
 def run_tkinter():
     category_window.mainloop()
 run_tkinter()
-# my code
-# if __name__ == '__main__':
-    # import speech_recognition as sr
-    # r = sr.Recognizer()
-    # try:
-    #     with DuckTypedMicrophone() as source:
-    #         print('\nSay something to the ...')
-    #         audio = r.listen(source)
-    #     print('Got it.\n')
-    #     print('you say : "%s"\n' % r.recognize_google(audio))
-    # except:
-    #     print('sorry saleh do it again ')
-    # if True: # plot and/or play back captured audio
-    #     s = audiomath.Sound(audio.get_wav_data(), fs=audio.sample_rate, nChannels=1)
+
 
