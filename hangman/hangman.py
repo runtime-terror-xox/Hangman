@@ -2,13 +2,14 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
 from PyDictionary import PyDictionary
+import speech_recognition as sr
+
 # import time
 import random
 from data_from_faker import *
-import audiomath; audiomath.RequireAudiomathVersion( '1.12.0' )
+import audiomath;
 import speech_recognition  # NB: python -m pip install SpeechRecognition
-
-
+audiomath.RequireAudiomathVersion( '1.12.0' )
 alphabet1=[ 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p','a']
 alphabet2=[ 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l','z']
 alphabet3=[ 'x', 'c', 'v', 'b', 'n', 'm']
@@ -54,8 +55,6 @@ def game_window():
         global numberOfGuesses
         global word_for_guess
         numberOfGuesses = 0
-        # want_play = input('you want to play')
-        # want_play = 'y'
         if True:
             word_for_guess=random_word()
             the_word_withSpaces = " ".join(word_for_guess)
@@ -141,17 +140,17 @@ def game_window():
     """
     button for call get_help function and give hint to the user 
     """
-    Button(window, text='hint', command=lambda: get_help(word_for_guess), font=('Helvetica 18'), width=5,
-           height=3, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5,
-                                                                                                               column=10,
-                                                                                                               sticky='NSWE')
+    Button(window, text='hint', command=lambda: get_help(word_for_guess), font=('Helvetica 18'), width=5,height=3, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5,column=10,sticky='NSWE')
+    # Button(window, text='voice', command=lambda: get_voice_val(), font=('Helvetica 18'), width=5,height=3, bg="orange", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=6,column=10,sticky='NSWE')
+
     if_user_want_to_play()
 """
 Category window
 """
 category_window = Tk()
 category_window.geometry('400x200+761+250')
-category_window.configure(bg="#fff")
+category_window.configure()
+
 category_window.title('Hangman')
 """
 function to check what is the category and call a new function to open new window (game window) and destroy category window
@@ -173,9 +172,9 @@ function to show the windows it is for tkinter package
 """
 def run_tkinter():
     category_window.mainloop()
-run_tkinter()
-# my code 
+# run_tkinter()
 
+# my code
 class DuckTypedMicrophone( speech_recognition.AudioSource ): # descent from AudioSource is required purely to pass an assertion in Recognizer.listen()
     def __init__( self, device=None, chunkSeconds=1024/44100.0 ):  # 1024 samples at 44100 Hz is about 23 ms
         self.recorder = None
@@ -193,36 +192,26 @@ class DuckTypedMicrophone( speech_recognition.AudioSource ): # descent from Audi
     def __exit__( self, *blx ):
         self.recorder.Stop()
         self.recorder = None
-    # x=0
-    # Note stoped here
     def read( self, nSamples ):
-        # DuckTypedMicrophone.x+=1
-        # print(DuckTypedMicrophone.x)
-        # if DuckTypedMicrophone.x>180:
-        #     return
         sampleArray = self.recorder.ReadSamples( self.nSamplesRead, nSamples )
         self.nSamplesRead += nSamples
         return self.recorder.sound.dat2str( sampleArray )
     @property
     def stream( self ): # attribute must be present to pass an assertion in Recognizer.listen(), and its value must have a .read() method
         return self if self.recorder else None
-
-if __name__ == '__main__':
-    import speech_recognition as sr
+def get_voice_val():
     r = sr.Recognizer()
     try:
         with DuckTypedMicrophone() as source:
-            print('\nSay something to the ...')
+            print('\nSay something ...')
             audio = r.listen(source)
         print('Got it.\n')
-        print('you say : "%s"\n' % r.recognize_google(audio))
+        return f'{r.recognize_google(audio)}'
     except:
         print('sorry saleh do it again ')
     if True: # plot and/or play back captured audio
         s = audiomath.Sound(audio.get_wav_data(), fs=audio.sample_rate, nChannels=1)
-
-
-
-
-
-
+# xsal=get_voice_val()
+# print(xsal)
+# if xsal[0]=='g':
+#     print("working")
