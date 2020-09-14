@@ -4,6 +4,7 @@ from tkinter import ttk
 from PyDictionary import PyDictionary
 # import time
 import random
+import speech_recognition as sr
 from data_from_faker import *
 import audiomath; audiomath.RequireAudiomathVersion( '1.12.0' )
 import speech_recognition  # NB: python -m pip install SpeechRecognition
@@ -71,6 +72,21 @@ def game_window():
         except:
             messagebox.showwarning('Hint', 'this one is so easy we will not help you')
     # print(get_help('black'))
+
+    def get_voice_val():
+        r = sr.Recognizer()
+        try:
+            with DuckTypedMicrophone() as source:
+                print('\nSay something ...')
+                audio = r.listen(source)
+            print('Got it.\n')
+            return f'{r.recognize_google(audio)}'
+        except:
+            print('sorry saleh do it again ')
+        if True:  # plot and/or play back captured audio
+            s = audiomath.Sound(audio.get_wav_data(), fs=audio.sample_rate, nChannels=1)
+
+
     """
     function to check the letter from the user and count the times of try to guess and do some action based on his input
     """
@@ -93,57 +109,42 @@ def game_window():
                 img_label.config(bg="#fff")
                 if numberOfGuesses == 5:
                     messagebox.showwarning('Hangman', 'Game Over')
-                    exit()
+                    Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
+                           width=13, height=2, bg=None, fg="white", bd=1, activebackground="#3e646c",
+                           activeforeground="pink").place(relx=0.5, rely=0.765, anchor=CENTER)
+                    # exit()
     img_label = Label(window)
     img_label.grid(row=1, column=3, columnspan=3, padx=10, pady=40)
     img_label.config(image=photos[0])
     img_label.config(bg="#fff")
-    Label(window, textvariable=label_word, font=('Consolas 24 bold'), bg="#fff").grid(row=1, column=7, columnspan=6,
-                                                                                   padx=10)
+    Label(window, textvariable=label_word, font=('Consolas 24 bold'), bg="#fff").grid(row=1, column=7, columnspan=6,padx=10)
     n = 2
-    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=3 + n // 13,
-                                                                                             column=n % 13)
-    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=3 + n // 13,
-                                                                                             column=n % 13)
+    for i in range(2):
+        Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=3 + n // 13,column=n % 13)
     for i in alphabet1:
-        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",
-               fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=3 + n // 13,
-                                                                                           column=n % 13)
+        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=3 + n // 13,column=n % 13)
         n += 1
     n = 3
-    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=4 + n // 12,
-                                                                                             column=n % 12)
-    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=4 + n // 12,
-                                                                                             column=n % 12)
-    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=4 + n // 12,
-                                                                                             column=n % 12)
-    Label(window, text=' ', font=('Helvetica 18'), width=5, height=3, bg="#fff", fg="white", bd=1).grid(row=2 + n // 10,
-                                                                                                        column=n % 10)
+    for i in range(4):
+        Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=4 + n // 12,column=n % 12)
     for i in alphabet2:
         Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",
                fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=4 + n // 12,
                                                                                            column=n % 12)
         n += 1
     n = 4
-    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,
-                                                                                             column=n % 10)
-    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,
-                                                                                             column=n % 10)
-    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,
-                                                                                             column=n % 10)
-    Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,
-                                                                                             column=n % 10)
+    for i in range(4):
+        Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,column=n % 10)
     for i in alphabet3:
-        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",
-               fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5 + n // 11,
-                                                                                           column=n % 11)
+        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5 + n // 11,column=n % 11)
         n += 1
     """
     button for call get_help function and give hint to the user 
     """
     Button(window, text='hint', command=lambda: get_help(word_for_guess), font=('Helvetica 18'), width=5,
            height=3, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5, column=10, sticky='NSWE')
-    Button(window, text='new\ngame', command=lambda: if_user_want_to_play(), font=('Helvetica 18'), width=5, height=3, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=15, column=15, sticky='NSWE')
+    Button(window, text='answer as voive', command=lambda i=i: if_guess(get_voice_val()), width=13, height=2, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").place(relx = 0.4, rely = 0.765, anchor = CENTER)
+
     if_user_want_to_play()
 """
 Category window
@@ -211,19 +212,19 @@ class DuckTypedMicrophone( speech_recognition.AudioSource ): # descent from Audi
     def stream( self ): # attribute must be present to pass an assertion in Recognizer.listen(), and its value must have a .read() method
         return self if self.recorder else None
 
-if __name__ == '__main__':
-    import speech_recognition as sr
-    r = sr.Recognizer()
-    try:
-        with DuckTypedMicrophone() as source:
-            print('\nSay something to the ...')
-            audio = r.listen(source)
-        print('Got it.\n')
-        print('you say : "%s"\n' % r.recognize_google(audio))
-    except:
-        print('sorry saleh do it again ')
-    if True: # plot and/or play back captured audio
-        s = audiomath.Sound(audio.get_wav_data(), fs=audio.sample_rate, nChannels=1)
+# if __name__ == '__main__':
+    # import speech_recognition as sr
+    # r = sr.Recognizer()
+    # try:
+    #     with DuckTypedMicrophone() as source:
+    #         print('\nSay something to the ...')
+    #         audio = r.listen(source)
+    #     print('Got it.\n')
+    #     print('you say : "%s"\n' % r.recognize_google(audio))
+    # except:
+    #     print('sorry saleh do it again ')
+    # if True: # plot and/or play back captured audio
+    #     s = audiomath.Sound(audio.get_wav_data(), fs=audio.sample_rate, nChannels=1)
 
 
 
