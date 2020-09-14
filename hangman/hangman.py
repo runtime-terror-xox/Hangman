@@ -142,15 +142,14 @@ def game_window():
     button for call get_help function and give hint to the user 
     """
     Button(window, text='hint', command=lambda: get_help(word_for_guess), font=('Helvetica 18'), width=5,
-           height=3, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5,
-                                                                                                               column=10,
-                                                                                                               sticky='NSWE')
+           height=3, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5, column=10, sticky='NSWE')
+    Button(window, text='new\ngame', command=lambda: if_user_want_to_play(), font=('Helvetica 18'), width=5, height=3, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=15, column=15, sticky='NSWE')
     if_user_want_to_play()
 """
 Category window
 """
 category_window = Tk()
-category_window.geometry('400x200+761+250')
+category_window.geometry('450x250+761+250')
 category_window.configure(bg="#fff")
 category_window.title('Hangman')
 """
@@ -163,10 +162,15 @@ def what_is_category():
         category=box_value.get()
         game_window()
 box_value=StringVar()
-coltbox = ttk.Combobox(category_window,textvariable=box_value)
+Label(category_window, text='\nWelcome to Hangman game\n', font=('Helvetica 18'), bg='#fff').pack()
+Label(category_window, text='To start you\'ve to choose a category for\nthe word that you want to guess\nfrom the list bellow', font=('Helvetica 12'), bg='#fff').pack()
+Label(category_window, textvariable='', font=('Helvetica 8'), width=3, height=1, bg="#fff").pack()
+coltbox = ttk.Combobox(category_window,textvariable=box_value, font=('Helvetica 10'), width=30, height=1)
 coltbox["values"] = ["color", "name","country"]
 coltbox.pack()
-start_game=Button(category_window,text="start\ngame", command=what_is_category, width=20)
+Label(category_window, textvariable='', font=('Helvetica 8'), width=3, height=0, bg="#fff").pack()
+# start_game=Button(category_window,text="Start", command=what_is_category, width=10)
+start_game=Button(category_window,text="Start", command=what_is_category, width=10, font=('Helvetica 10'), bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink")
 start_game.pack()
 """
 function to show the windows it is for tkinter package
