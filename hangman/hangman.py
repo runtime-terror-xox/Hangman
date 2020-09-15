@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
 from PyDictionary import PyDictionary
-# import time
 import random
 import speech_recognition as sr
 from data_from_faker import *
@@ -11,6 +10,7 @@ class DuckTypedMicrophone( sr.AudioSource ): # descent from AudioSource is requi
     def __init__( self, device=None, chunkSeconds=1024/44100.0 ):  # 1024 samples at 44100 Hz is about 23 ms
         self.recorder = None
         self.device = device
+        self.x=0
         self.chunkSeconds = chunkSeconds
     def __enter__( self ):
         self.nSamplesRead = 0
@@ -23,14 +23,10 @@ class DuckTypedMicrophone( sr.AudioSource ): # descent from AudioSource is requi
     def __exit__( self, *blx ):
         self.recorder.Stop()
         self.recorder = None
-    # x=0
-    # Note stoped here
     def read( self, nSamples ):
-        # DuckTypedMicrophone.x+=1
-        # print(DuckTypedMicrophone.x)
-        # if DuckTypedMicrophone.x == 150:
-            # DuckTypedMicrophone.x=0
-            # return '1'
+        self.x+=1
+        if self.x>120:
+            return
         sampleArray = self.recorder.ReadSamples( self.nSamplesRead, nSamples )
         self.nSamplesRead += nSamples
         return self.recorder.sound.dat2str( sampleArray )
@@ -38,7 +34,6 @@ class DuckTypedMicrophone( sr.AudioSource ): # descent from AudioSource is requi
     def stream( self ): # attribute must be present to pass an assertion in Recognizer.listen(), and its value must have a .read() method
         return self if self.recorder else None
 
-import speech_recognition  # NB: python -m pip install SpeechRecognition
 alphabet1=[ 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p','a']
 alphabet2=[ 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l','z']
 alphabet3=[ 'x', 'c', 'v', 'b', 'n', 'm']
@@ -80,14 +75,10 @@ def game_window():
     function to start the game and count number Of try to Guess
     """
     def if_user_want_to_play():
-        # newgame_btn1.destroy()
-        # newgame_btn2.destroy()
         global the_word_withSpaces
         global numberOfGuesses
         global word_for_guess
         numberOfGuesses = 0
-        # want_play = input('you want to play')
-        # want_play = 'y'
         if True:
             word_for_guess=random_word()
             the_word_withSpaces = " ".join(word_for_guess)
@@ -102,7 +93,7 @@ def game_window():
             messagebox.showwarning('Hint', dictionary)
         except:
             messagebox.showwarning('Hint', 'this one is so easy we will not help you')
-    # print(get_help('black'))
+
     def get_voice_val():
         r = sr.Recognizer()
         try:
@@ -112,47 +103,46 @@ def game_window():
             print(f'{r.recognize_google(audio).lower()}')
             w=r.recognize_google(audio).lower()[0]
             print(w)
-            # return f'{r.recognize_google(audio).lower()}'
             return w
         except:
-            print('sorry saleh do it again ')
-        if True:  # plot and/or play back captured audio
-            s = audiomath.Sound(audio.get_wav_data(), fs=audio.sample_rate, nChannels=1)
+            print('sorry do it again ')
+
     """
     function to check the letter from the user and count the times of try to guess and do some action based on his input
     """
     def if_guess(letter):
-        global numberOfGuesses
-        if numberOfGuesses < 6:
-            text = list(the_word_withSpaces)
-            guessed = list(label_word.get())
-            if the_word_withSpaces.count(letter) > 0:
-                for i in range(len(text)):
-                    if text[i] == letter:
-                        guessed[i] = letter
-                    label_word.set(''.join(guessed))
-                    if label_word.get() == the_word_withSpaces:
-                        messagebox.showinfo('Hangman', 'Great you guessed it')
-                        global newgame_btn1
-                        newgame_btn1=Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
+        try:
+            global numberOfGuesses
+            if numberOfGuesses < 6:
+                text = list(the_word_withSpaces)
+                guessed = list(label_word.get())
+                if the_word_withSpaces.count(letter) > 0:
+                    for i in range(len(text)):
+                        if text[i] == letter:
+                            guessed[i] = letter
+                        label_word.set(''.join(guessed))
+                        if label_word.get() == the_word_withSpaces:
+                            messagebox.showinfo('Hangman', 'Great you guessed it')
+                            global newgame_btn1
+                            newgame_btn1=Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
+                                   width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
+                                   activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
+                else:
+                    numberOfGuesses += 1
+                    img_label.config(image=photos[numberOfGuesses])
+                    img_label.config(bg="#fff")
+                    if numberOfGuesses == 5:
+
+                        messagebox.showwarning('Hangman', 'Game Over')
+                        global newgame_btn2
+                        newgame_btn2=Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
                                width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
                                activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
+        except:
+            print("no")
+            if_guess(get_voice_val())
 
-                        # if_user_want_to_play()
 
-            else:
-                numberOfGuesses += 1
-                img_label.config(image=photos[numberOfGuesses])
-                img_label.config(bg="#fff")
-                if numberOfGuesses == 5:
-
-                    messagebox.showwarning('Hangman', 'Game Over')
-                    global newgame_btn2
-                    newgame_btn2=Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
-                           width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
-                           activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
-                    # newgame_btn
-                    # exit()
     img_label = Label(window)
     img_label.grid(row=1, column=3, columnspan=3)
     img_label.config(image=photos[0])
@@ -190,7 +180,7 @@ Category window
 """
 category_window = Tk()
 category_window.geometry('450x250+761+250')
-category_window.configure(bg="#fff")
+category_window.configure(bg="")
 category_window.title('Hangman')
 """
 function to check what is the category and call a new function to open new window (game window) and destroy category window
@@ -218,18 +208,3 @@ function to show the windows it is for tkinter package
 def run_tkinter():
     category_window.mainloop()
 run_tkinter()
-# my code
-
-# if __name__ == '__main__':
-    # import speech_recognition as sr
-    # r = sr.Recognizer()
-    # try:
-    #     with DuckTypedMicrophone() as source:
-    #         print('\nSay something to the ...')
-    #         audio = r.listen(source)
-    #     print('Got it.\n')
-    #     print('you say : "%s"\n' % r.recognize_google(audio))
-    # except:
-    #     print('sorry saleh do it again ')
-    # if True: # plot and/or play back captured audio
-    #     s = audiomath.Sound(audio.get_wav_data(), fs=audio.sample_rate, nChannels=1)
