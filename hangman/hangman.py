@@ -7,7 +7,6 @@ import random
 import speech_recognition as sr
 from data_from_faker import *
 import audiomath; audiomath.RequireAudiomathVersion( '1.12.0' )
-
 class DuckTypedMicrophone( sr.AudioSource ): # descent from AudioSource is required purely to pass an assertion in Recognizer.listen()
     def __init__( self, device=None, chunkSeconds=1024/44100.0 ):  # 1024 samples at 44100 Hz is about 23 ms
         self.recorder = None
@@ -39,7 +38,6 @@ class DuckTypedMicrophone( sr.AudioSource ): # descent from AudioSource is requi
     def stream( self ): # attribute must be present to pass an assertion in Recognizer.listen(), and its value must have a .read() method
         return self if self.recorder else None
 
-        
 import speech_recognition  # NB: python -m pip install SpeechRecognition
 alphabet1=[ 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p','a']
 alphabet2=[ 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l','z']
@@ -54,7 +52,7 @@ def game_window():
     Game window
     """
     window = Tk()
-    window.geometry('1023x750+450+100')
+    window.geometry('900x610+400+100')
     window.configure(bg="#fff")
     window.title('Hangman_Game')
     photos = [PhotoImage(file='hm01.png'), PhotoImage(file='hm02.png'), PhotoImage(file='hm03.png'),PhotoImage(file='hm06.png'),PhotoImage(file='hm07.png'), PhotoImage(file='hm08.png')]
@@ -82,6 +80,8 @@ def game_window():
     function to start the game and count number Of try to Guess
     """
     def if_user_want_to_play():
+        # newgame_btn1.destroy()
+        # newgame_btn2.destroy()
         global the_word_withSpaces
         global numberOfGuesses
         global word_for_guess
@@ -133,22 +133,31 @@ def game_window():
                     label_word.set(''.join(guessed))
                     if label_word.get() == the_word_withSpaces:
                         messagebox.showinfo('Hangman', 'Great you guessed it')
-                        if_user_want_to_play()
+                        global newgame_btn1
+                        newgame_btn1=Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
+                               width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
+                               activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
+
+                        # if_user_want_to_play()
+
             else:
                 numberOfGuesses += 1
                 img_label.config(image=photos[numberOfGuesses])
                 img_label.config(bg="#fff")
                 if numberOfGuesses == 5:
+
                     messagebox.showwarning('Hangman', 'Game Over')
-                    Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
-                           width=13, height=2, bg=None, fg="white", bd=1, activebackground="#3e646c",
-                           activeforeground="pink").place(relx=0.5, rely=0.765, anchor=CENTER)
+                    global newgame_btn2
+                    newgame_btn2=Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
+                           width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
+                           activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
+                    # newgame_btn
                     # exit()
     img_label = Label(window)
-    img_label.grid(row=1, column=3, columnspan=3, padx=10, pady=40)
+    img_label.grid(row=1, column=3, columnspan=3)
     img_label.config(image=photos[0])
     img_label.config(bg="#fff")
-    Label(window, textvariable=label_word, font=('Consolas 24 bold'), bg="#fff").grid(row=1, column=7, columnspan=6,padx=10)
+    Label(window, textvariable=label_word, font=('Consolas 24 bold'), bg="#fff").grid(row=1, column=7, columnspan=6)
     n = 2
     for i in range(2):
         Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=3 + n // 13,column=n % 13)
@@ -174,7 +183,7 @@ def game_window():
     """
     Button(window, text='hint', command=lambda: get_help(word_for_guess), font=('Helvetica 18'), width=5,
            height=3, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5, column=10, sticky='NSWE')
-    Button(window, text='answer as voive', command=lambda i=i: if_guess(get_voice_val()), width=13, height=2, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").place(relx = 0.4, rely = 0.765, anchor = CENTER)
+    Button(window, text='answer as voive', command=lambda i=i: if_guess(get_voice_val()), width=14, height=4, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").place(relx = 0.4, rely = 0.870, anchor = CENTER)
     if_user_want_to_play()
 """
 Category window
@@ -209,5 +218,18 @@ function to show the windows it is for tkinter package
 def run_tkinter():
     category_window.mainloop()
 run_tkinter()
+# my code
 
-
+# if __name__ == '__main__':
+    # import speech_recognition as sr
+    # r = sr.Recognizer()
+    # try:
+    #     with DuckTypedMicrophone() as source:
+    #         print('\nSay something to the ...')
+    #         audio = r.listen(source)
+    #     print('Got it.\n')
+    #     print('you say : "%s"\n' % r.recognize_google(audio))
+    # except:
+    #     print('sorry saleh do it again ')
+    # if True: # plot and/or play back captured audio
+    #     s = audiomath.Sound(audio.get_wav_data(), fs=audio.sample_rate, nChannels=1)
