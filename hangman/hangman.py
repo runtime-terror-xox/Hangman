@@ -150,8 +150,9 @@ def game_window():
                         newgame_btn2=Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
                                width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
                                activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
+        except IndexError as inderr:
+            print('in indexerr')
         except:
-            print("no")
             if_guess(get_voice_val())
 
 
@@ -185,14 +186,17 @@ def game_window():
     """
     Button(window, text='hint', command=lambda: get_help(word_for_guess), font=('Helvetica 18'), width=5,
            height=3, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").grid(row=5, column=10, sticky='NSWE')
-    Button(window, text='answer as voive', command=lambda i=i: if_guess(get_voice_val()), font=('Helvetica 18'), width=13, height=2, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").place(relx = 0.387, rely = 0.8815, anchor = CENTER)
+    # Button(window, text='answer as voive', command=lambda i=i: if_guess(get_voice_val()), font=('Helvetica 18'), width=13, height=2, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").place(relx = 0.387, rely = 0.8815, anchor = CENTER)
+    Button(window, text='answer as voive', command=lambda i=i: if_guess(get_voice_val()), font=('Helvetica 18'),
+           width=13, height=2, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").place(
+        relx=0.387, rely=0.8815, anchor=CENTER)
     if_user_want_to_play()
 """
 Category window
 """
 category_window = Tk()
 category_window.geometry('450x250+761+250')
-category_window.configure(bg="")
+category_window.configure(bg="#fff")
 category_window.title('Hangman')
 """
 function to check what is the category and call a new function to open new window (game window) and destroy category window
