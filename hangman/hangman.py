@@ -87,6 +87,7 @@ def game_window():
     function to start the game and count number Of try to Guess
     """
     def if_user_want_to_play():
+        img_label.config(image=photos[0])
         global the_word_withSpaces
         global numberOfGuesses
         global word_for_guess
@@ -123,8 +124,10 @@ def game_window():
     function to check the letter from the user and count the times of try to guess and do some action based on his input
     """
     def if_guess(letter):
+        global numberOfGuesses
+        if numberOfGuesses>=6:
+            pass
         try:
-            global numberOfGuesses
             if numberOfGuesses < 6:
                 text = list(the_word_withSpaces)
                 guessed = list(label_word.get())
@@ -136,9 +139,9 @@ def game_window():
                         if label_word.get() == the_word_withSpaces:
                             messagebox.showinfo('Hangman', 'Great you guessed it')
                             global newgame_btn1
-                            newgame_btn1=Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
-                                   width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
-                                   activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
+                            newgame_btn1=Button(window, text='New Game', command=lambda: (if_user_want_to_play()), font=('Helvetica 18'),
+                                                width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
+                                                activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
                 else:
                     numberOfGuesses += 1
                     img_label.config(image=photos[numberOfGuesses])
@@ -147,9 +150,11 @@ def game_window():
 
                         messagebox.showwarning('Hangman', 'Game Over')
                         global newgame_btn2
-                        newgame_btn2=Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
-                               width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
-                               activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
+                        newgame_btn2=Button(window, text='New Game', command=lambda: (if_user_want_to_play()), font=('Helvetica 18'),
+                                            width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
+                                            activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
+        except IndexError as inderr:
+            print('in indexerr')
         except:
             print("no")
             if_guess(get_voice_val())
