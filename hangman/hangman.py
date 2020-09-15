@@ -114,7 +114,6 @@ def game_window():
             print(w)
             # return f'{r.recognize_google(audio).lower()}'
             return w
-
         except:
             print('sorry saleh do it again ')
         if True:  # plot and/or play back captured audio
