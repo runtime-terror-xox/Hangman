@@ -73,7 +73,19 @@ def game_window():
             random_word = word_list[l_idx]
             return random_word.lower()
         elif category == 'color':
-            word_list = faker_country_data()
+            word_list = faker_color_data()
+            random_word = word_list[l_idx]
+            return random_word.lower()
+        elif category == 'word':
+            word_list = faker_word_data()
+            random_word = word_list[l_idx]
+            return random_word.lower()
+        elif category == 'month':
+            word_list = faker_month_data()
+            random_word = word_list[l_idx]
+            return random_word.lower()
+        elif category == 'language':
+            word_list = faker_language_data()
             random_word = word_list[l_idx]
             return random_word.lower()
     """
@@ -135,8 +147,8 @@ def game_window():
                         messagebox.showinfo('Hangman', 'Great you guessed it')
                         global newgame_btn1
                         newgame_btn1=Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
-                               width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
-                               activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
+                               width=13, height=2, bg='#263d42', fg="white", activebackground="#3e646c",
+                               activeforeground="pink").place(relx = 0.600, rely = 0.8815, anchor=CENTER)
 
                         # if_user_want_to_play()
 
@@ -149,8 +161,8 @@ def game_window():
                     messagebox.showwarning('Hangman', 'Game Over')
                     global newgame_btn2
                     newgame_btn2=Button(window, text='New Game', command=lambda: if_user_want_to_play(), font=('Helvetica 18'),
-                           width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
-                           activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
+                           width=13, height=2, bg='#263d42', fg="white", activebackground="#3e646c",
+                           activeforeground="pink").place(relx = 0.600, rely = 0.8815, anchor=CENTER)
                     # newgame_btn
                     # exit()
     img_label = Label(window)
@@ -162,28 +174,28 @@ def game_window():
     for i in range(2):
         Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=3 + n // 13,column=n % 13)
     for i in alphabet1:
-        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=3 + n // 13,column=n % 13)
+        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",fg="white", activebackground="#3e646c", activeforeground="pink").grid(row=3 + n // 13,column=n % 13)
         n += 1
     n = 3
     for i in range(4):
         Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=4 + n // 12,column=n % 12)
     for i in alphabet2:
         Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",
-               fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=4 + n // 12,
+               fg="white", activebackground="#3e646c", activeforeground="pink").grid(row=4 + n // 12,
                                                                                            column=n % 12)
         n += 1
     n = 4
     for i in range(4):
         Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=5 + n // 10,column=n % 10)
     for i in alphabet3:
-        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5 + n // 11,column=n % 11)
+        Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",fg="white", activebackground="#3e646c", activeforeground="pink").grid(row=5 + n // 11,column=n % 11)
         n += 1
     """
     button for call get_help function and give hint to the user 
     """
     Button(window, text='hint', command=lambda: get_help(word_for_guess), font=('Helvetica 18'), width=5,
-           height=3, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").grid(row=5, column=10, sticky='NSWE')
-    Button(window, text='answer as voive', command=lambda i=i: if_guess(get_voice_val()), width=14, height=4, bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink").place(relx = 0.4, rely = 0.870, anchor = CENTER)
+           height=3, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").grid(row=5, column=10, sticky='NSWE')
+    Button(window, text='answer as voive', command=lambda i=i: if_guess(get_voice_val()), font=('Helvetica 18'), width=13, height=2, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").place(relx = 0.387, rely = 0.8815, anchor = CENTER)
     if_user_want_to_play()
 """
 Category window
@@ -206,7 +218,7 @@ Label(category_window, text='\nWelcome to Hangman game\n', font=('Helvetica 18')
 Label(category_window, text='To start you\'ve to choose a category for\nthe word that you want to guess\nfrom the list bellow', font=('Helvetica 12'), bg='#fff').pack()
 Label(category_window, textvariable='', font=('Helvetica 8'), width=3, height=1, bg="#fff").pack()
 coltbox = ttk.Combobox(category_window,textvariable=box_value, font=('Helvetica 10'), width=30, height=1)
-coltbox["values"] = ["color", "name","country"]
+coltbox["values"] = ["color", "name","country", "word", "month", "language"]
 coltbox.pack()
 Label(category_window, textvariable='', font=('Helvetica 8'), width=3, height=0, bg="#fff").pack()
 # start_game=Button(category_window,text="Start", command=what_is_category, width=10)
