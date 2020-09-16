@@ -140,8 +140,8 @@ def game_window():
                             messagebox.showinfo('Hangman', 'Great you guessed it')
                             global newgame_btn1
                             newgame_btn1=Button(window, text='New Game', command=lambda: (if_user_want_to_play()), font=('Helvetica 18'),
-                                                width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
-                                                activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
+                                                width=13, height=2, bg='#263d42', fg="white", activebackground="#3e646c",
+                                                activeforeground="pink").place(relx = 0.600, rely = 0.8815, anchor=CENTER)
                 else:
                     numberOfGuesses += 1
                     img_label.config(image=photos[numberOfGuesses])
@@ -151,8 +151,8 @@ def game_window():
                         messagebox.showwarning('Hangman', 'Game Over')
                         global newgame_btn2
                         newgame_btn2=Button(window, text='New Game', command=lambda: (if_user_want_to_play()), font=('Helvetica 18'),
-                                            width=13, height=2, bg='#263d42', fg="white", bd=1, activebackground="#3e646c",
-                                            activeforeground="pink").place(relx=0.8, rely = 0.870, anchor=CENTER)
+                                            width=13, height=2, bg='#263d42', fg="white", activebackground="#3e646c",
+                                            activeforeground="pink").place(relx = 0.600, rely = 0.8815, anchor=CENTER)
         except IndexError as inderr:
             print('in indexerr')
         except:
