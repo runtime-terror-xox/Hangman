@@ -171,43 +171,6 @@ def game_window():
     #         word_list = faker_language_data()
     #         random_word = word_list[l_idx]
     #         return random_word.lower()
-    # """
-    # function to start the game and count number Of try to Guess
-    # """
-    # def if_user_want_to_play():
-    #     img_label.config(image=photos[0])
-    #     global the_word_withSpaces
-    #     global numberOfGuesses
-    #     global word_for_guess
-    #     numberOfGuesses = 0
-    #     if True:
-    #         word_for_guess=random_word()
-    #         the_word_withSpaces = " ".join(word_for_guess)
-    #         print(the_word_withSpaces)
-    #         label_word.set(" ".join("_" * len(word_for_guess)))
-    # """
-    # function to get the user hint or defintion about the word that must be guessed
-    # """
-    # def get_help(val):
-    #     try:
-    #         dictionary = PyDictionary(f'{val}').getMeanings()[f'{val}']['Noun'][0]
-    #         messagebox.showwarning('Hint', dictionary)
-    #     except:
-    #         messagebox.showwarning('Hint', 'this one is so easy we will not help you')
-
-    # def get_voice_val():
-    #     r = sr.Recognizer()
-    #     try:
-    #         with DuckTypedMicrophone() as source:
-    #             print('\nSay something ...')
-    #             audio = r.listen(source)
-    #         print(f'{r.recognize_google(audio).lower()}')
-    #         w=r.recognize_google(audio).lower()[0]
-    #         print(w)
-    #         return w
-    #     except:
-    #         print('sorry do it again ')
-
 
 
     img_label = Label(window)
