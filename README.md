@@ -1,20 +1,49 @@
 # Hangman Game
-## Runtime Terror Team Member
--  Saleh Al-Masri
-- Basma Mohammed Eid
-- Ahmad Swedani
-## Game
-*When you open the game you will see the home page as showen below*
-![home-page-gui](imges/hangman-home.JPG)
-*you should chose the type of the word you want to guess them*
-![home-page-gui](imges/cat-pages.jpg)
-*after that you should gess the word*
-![home-page-gui](imges/game-play.jpg)
-*you can git some help if you press on the Hint btn*
-![home-page-gui](imges/hint.jpg)
 
-*you have 5 chance to guss the right charecter of you will lose*
-![home-page-gui](imges/lose.jpg)
+[the wireFrame]()
 
+## game_instructions
 
-> Note you can answer with your voice if you press on the ansewer with voice btn but you should say word starts with the charecter that you want to guess it 
+[game_instructions](hangman/game_instructions.md)
+
+### Domain Modeling
+
+## <!-- ![Domain Modeling](img/rsz_slide1.png) -->
+
+````
+### About this project
+
+```markdown
+---
+Hangman: thi is a  guessing game for two or more players. One player thinks of a word, phrase or sentence and the other(s) tries to guess it by suggesting letters within a certain number of guesses.
+---
+````
+
+### date
+
+Date published
+
+```markdown
+---
+date: 2020-10-17 10:00:00
+---
+```
+
+### author
+
+Authors name
+
+```markdown
+---
+author: Runtime Terror Team Member
+  Saleh Al-Masri & Basma Mohammed Eid & Ahmad Swedani
+---
+```
+
+### location
+
+```markdown
+---
+location: Jordan
+---
+```
