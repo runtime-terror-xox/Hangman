@@ -162,7 +162,7 @@ def game_window():
     """
     Button(window, text='hint', command=lambda: get_help(word_for_guess), font=('Helvetica 18'), width=5,
            height=3, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").grid(row=5, column=10, sticky='NSWE')
-    # Button(window, text='answer as voive', command=lambda i=i: if_guess(get_voice_val()), font=('Helvetica 18'), width=13, height=2, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").place(relx = 0.387, rely = 0.8815, anchor = CENTER)
+    # Button(window, text='answer as voice', command=lambda i=i: if_guess(get_voice_val()), font=('Helvetica 18'), width=13, height=2, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").place(relx = 0.387, rely = 0.8815, anchor = CENTER)
     Button(window, text='answer as voice', command=lambda i=i: if_guess(get_voice_val()), font=('Helvetica 18'),
            width=13, height=2, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").place(
         relx=0.387, rely=0.8815, anchor=CENTER)
