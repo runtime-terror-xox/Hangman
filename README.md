@@ -25,7 +25,7 @@ Date published
 
 ```markdown
 ---
-date: 2020-10-17 10:00:00
+date: 2020-10-17 1:00:00
 ---
 ```
 
