@@ -140,39 +140,6 @@ def game_window():
     window.title('Hangman_Game')
     photos = [PhotoImage(file='hm01.png'), PhotoImage(file='hm02.png'), PhotoImage(file='hm03.png'),PhotoImage(file='hm06.png'),PhotoImage(file='hm07.png'), PhotoImage(file='hm08.png')]
     label_word = StringVar()
-    # """
-    # function to get random name by the category that user choice
-    # """
-    # def random_word():
-    #     global category
-    #     min, max = 0, 9
-    #     l_idx = random.randint(min, max)
-    #     if category == 'country':
-    #         word_list = faker_country_data()
-    #         random_word = word_list[l_idx]
-    #         return random_word.lower()
-    #     elif category == 'name':
-    #         word_list = faker_farst_name_data()
-    #         random_word = word_list[l_idx]
-    #         return random_word.lower()
-    #     elif category == 'color':
-    #         word_list = faker_color_data()
-    #         random_word = word_list[l_idx]
-    #         return random_word.lower()
-    #     elif category == 'word':
-    #         word_list = faker_word_data()
-    #         random_word = word_list[l_idx]
-    #         return random_word.lower()
-    #     elif category == 'month':
-    #         word_list = faker_month_data()
-    #         random_word = word_list[l_idx]
-    #         return random_word.lower()
-    #     elif category == 'language':
-    #         word_list = faker_language_data()
-    #         random_word = word_list[l_idx]
-    #         return random_word.lower()
-
-
     img_label = Label(window)
     img_label.grid(row=1, column=3, columnspan=3)
     img_label.config(image=photos[0])
