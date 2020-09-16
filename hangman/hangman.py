@@ -6,37 +6,12 @@ import random
 import speech_recognition as sr
 from data_from_faker import *
 import audiomath; audiomath.RequireAudiomathVersion( '1.12.0' )
-class DuckTypedMicrophone( sr.AudioSource ): # descent from AudioSource is required purely to pass an assertion in Recognizer.listen()
-    def __init__( self, device=None, chunkSeconds=1024/44100.0 ):  # 1024 samples at 44100 Hz is about 23 ms
-        self.recorder = None
-        self.device = device
-        self.x=0
-        self.chunkSeconds = chunkSeconds
-    def __enter__( self ):
-        self.nSamplesRead = 0
-        self.recorder = audiomath.Recorder( audiomath.Sound( 5, nChannels=1 ), loop=True, device=self.device )
-        # Attributes required by Recognizer.listen():
-        self.CHUNK = audiomath.SecondsToSamples( self.chunkSeconds, self.recorder.fs, int )
-        self.SAMPLE_RATE = int( self.recorder.fs )
-        self.SAMPLE_WIDTH = self.recorder.sound.nbytes
-        return self
-    def __exit__( self, *blx ):
-        self.recorder.Stop()
-        self.recorder = None
-    def read( self, nSamples ):
-        self.x+=1
-        if self.x>120:
-            return
-        sampleArray = self.recorder.ReadSamples( self.nSamplesRead, nSamples )
-        self.nSamplesRead += nSamples
-        return self.recorder.sound.dat2str( sampleArray )
-    @property
-    def stream( self ): # attribute must be present to pass an assertion in Recognizer.listen(), and its value must have a .read() method
-        return self if self.recorder else None
+from speech_rec import DuckTypedMicrophone
 
 alphabet1=[ 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p','a']
 alphabet2=[ 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l','z']
 alphabet3=[ 'x', 'c', 'v', 'b', 'n', 'm']
+
 """
 function to run the game on new window
 """
@@ -156,9 +131,7 @@ def game_window():
         except IndexError as inderr:
             print('in indexerr')
         except:
-            print("no")
             if_guess(get_voice_val())
-
 
     img_label = Label(window)
     img_label.grid(row=1, column=3, columnspan=3)
@@ -176,8 +149,7 @@ def game_window():
         Label(window, textvariable='', font=('Helvetica 18'), width=3, height=3, bg="#fff").grid(row=4 + n // 12,column=n % 12)
     for i in alphabet2:
         Button(window, text=i, command=lambda i=i: if_guess(i), font=('Helvetica 18'), width=5, height=3, bg="#263d42",
-               fg="white", activebackground="#3e646c", activeforeground="pink").grid(row=4 + n // 12,
-                                                                                           column=n % 12)
+               fg="white", activebackground="#3e646c", activeforeground="pink").grid(row=4 + n // 12,column=n % 12)
         n += 1
     n = 4
     for i in range(4):
@@ -190,14 +162,17 @@ def game_window():
     """
     Button(window, text='hint', command=lambda: get_help(word_for_guess), font=('Helvetica 18'), width=5,
            height=3, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").grid(row=5, column=10, sticky='NSWE')
-    Button(window, text='answer as voive', command=lambda i=i: if_guess(get_voice_val()), font=('Helvetica 18'), width=13, height=2, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").place(relx = 0.387, rely = 0.8815, anchor = CENTER)
+    # Button(window, text='answer as voive', command=lambda i=i: if_guess(get_voice_val()), font=('Helvetica 18'), width=13, height=2, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").place(relx = 0.387, rely = 0.8815, anchor = CENTER)
+    Button(window, text='answer as voice', command=lambda i=i: if_guess(get_voice_val()), font=('Helvetica 18'),
+           width=13, height=2, bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink").place(
+        relx=0.387, rely=0.8815, anchor=CENTER)
     if_user_want_to_play()
 """
 Category window
 """
 category_window = Tk()
 category_window.geometry('450x250+761+250')
-category_window.configure(bg="")
+category_window.configure(bg="#fff")
 category_window.title('Hangman')
 """
 function to check what is the category and call a new function to open new window (game window) and destroy category window
@@ -206,7 +181,7 @@ def what_is_category():
      print(box_value.get())
      if box_value.get():
         global category
-        category=box_value.get()
+        category =box_value.get()
         game_window()
 box_value=StringVar()
 Label(category_window, text='\nWelcome to Hangman game\n', font=('Helvetica 18'), bg='#fff').pack()
@@ -217,7 +192,7 @@ coltbox["values"] = ["color", "name","country", "word", "month", "language"]
 coltbox.pack()
 Label(category_window, textvariable='', font=('Helvetica 8'), width=3, height=0, bg="#fff").pack()
 # start_game=Button(category_window,text="Start", command=what_is_category, width=10)
-start_game=Button(category_window,text="Start", command=what_is_category, width=10, font=('Helvetica 10'), bg="#263d42", fg="white", bd=1, activebackground="#3e646c", activeforeground="pink")
+start_game=Button(category_window,text="Start", command=what_is_category, width=10, font=('Helvetica 10'), bg="#263d42", fg="white", activebackground="#3e646c", activeforeground="pink")
 start_game.pack()
 """
 function to show the windows it is for tkinter package
@@ -225,3 +200,8 @@ function to show the windows it is for tkinter package
 def run_tkinter():
     category_window.mainloop()
 run_tkinter()
+
+
+if __name__ == "__main__":
+    category='name'
+    print(random_word())
