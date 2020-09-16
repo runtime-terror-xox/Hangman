@@ -1,7 +1,5 @@
 # Hangman Game
 
-[the wireFrame]()
-
 ## game_instructions
 
 [game_instructions](hangman/game_instructions.md)
