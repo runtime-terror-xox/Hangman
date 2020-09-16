@@ -99,3 +99,17 @@ def faker_language_data():
                 else:
                     list_of_language.append(fake_language)
     return list_of_language
+
+# print(faker_month_data())
+# print(faker_color_data())
+
+if __name__=='__main__':
+    assert type(faker_color_data())==list
+    assert type(faker_farst_name_data())==list
+    assert type(faker_country_data())==list
+    assert type(faker_word_data())==list
+    # assert type(faker_month_data())==list
+    assert type(faker_language_data())==list
+    print('all tests passed!!!!')
+
+
